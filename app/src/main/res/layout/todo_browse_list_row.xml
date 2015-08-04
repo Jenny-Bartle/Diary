@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="fill_parent"
-android:orientation="vertical"
-android:background="@color/accent_material_dark"
+<com.jenny.diary.TodoBrowseElement xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/accent_material_dark"
     android:layout_height="wrap_content">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:text="bleh"
-    android:layout_gravity="left"
-    android:id="@+id/todo_browse_list_row_header"
-    android:textSize="15pt" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:id="@+id/todo_browse_list_row_time"
-    android:text="bleh"
-    />
-</TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="bleh"
+        android:layout_gravity="left"
+        android:id="@+id/todo_browse_list_row_header"
+        android:textSize="15pt" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/todo_browse_list_row_time"
+        android:text="bleh"
+        />
+</com.jenny.diary.TodoBrowseElement>
