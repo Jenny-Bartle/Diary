@@ -1,4 +1,4 @@
-package com.jenny.diary;
+package com.jenny.diaryapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
