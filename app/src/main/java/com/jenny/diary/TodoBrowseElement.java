@@ -1,11 +1,13 @@
 package com.jenny.diary;
 
 import android.content.Context;
+import android.text.format.Time;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -23,13 +25,35 @@ public class TodoBrowseElement extends TableRow {
 
     public void setTextValues(Task task) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        //RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.todo_browse_list_row, context);
 
-        TextView title = (TextView)findViewById(R.id.todo_browse_list_row_header);
-        TextView date = (TextView)findViewById(R.id.todo_browse_list_row_time);
+        TextView titleView = (TextView)findViewById(R.id.todo_browse_list_row_header);
+        TextView dateView = (TextView)findViewById(R.id.todo_browse_list_row_time);
 
-        title.setText(task.getHeading());
-        date.setText(new Date(task.getTimestamp().getTime()).toString());
+        titleView.setText(task.getHeading());
+        Date date = new Date(task.getTimestamp().getTime());
+        SimpleDateFormat dateFormat = getSimpleDateFormatter(date);
+        dateView.setText(dateFormat.format(date));
     }
 
+    private SimpleDateFormat getSimpleDateFormatter(Date date) {
+
+        Time startTime = new Time();
+        startTime.set(date.getTime());
+        int startDay = Time.getJulianDay(date.getTime(), startTime.gmtoff);
+
+        Date now = new Date(System.currentTimeMillis());
+        Time currentTime = new Time();
+        currentTime.set(now.getTime());
+        int currentDay = Time.getJulianDay(now.getTime(), currentTime.gmtoff);
+
+        int days = Math.abs(currentDay - startDay);
+
+        if (days == 0) {
+            return new SimpleDateFormat("h:mm a");
+        } else if (days <7) {
+            return new SimpleDateFormat("EEE");
+        } else {
+            return new SimpleDateFormat("d MMM yy");
+        }
+    }
 }

@@ -2,21 +2,25 @@
 <com.jenny.diary.TodoBrowseElement xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:orientation="vertical"
-    android:background="@color/accent_material_dark"
     android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="bleh"
-        android:layout_gravity="left"
-        android:id="@+id/todo_browse_list_row_header"
-        android:textSize="15pt" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/todo_browse_list_row_time"
-        android:text="bleh"
-        />
+        android:useDefaultMargins="true"
+        android:stretchColumns="0,1"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:id="@+id/todo_browse_list_row_time"
+            android:text="bleh"
+            android:gravity="right" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:text="bloh"
+            android:id="@+id/todo_browse_list_row_header"/>
+    </TableLayout>
 </com.jenny.diary.TodoBrowseElement>

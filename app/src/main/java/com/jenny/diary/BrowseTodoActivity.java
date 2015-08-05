@@ -28,7 +28,6 @@ public class BrowseTodoActivity extends ActionBarActivity {
             row.setTextValues(task);
             todosView.addView(row);
         }
-        System.out.println(todosView.getChildAt(0));
     }
 
     public void displayTodo(View view) {
