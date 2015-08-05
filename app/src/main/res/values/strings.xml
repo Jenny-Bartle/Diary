@@ -3,6 +3,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
 
     <!-- Home page -->
     <string name="home_title">Diary</string>

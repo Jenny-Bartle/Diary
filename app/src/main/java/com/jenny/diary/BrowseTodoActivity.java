@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -31,8 +33,19 @@ public class BrowseTodoActivity extends ActionBarActivity {
     }
 
     public void displayTodo(View view) {
+        TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
+        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        db.getTask(Long.parseLong(hiddenIdView.getText().toString()));
         Intent intent = new Intent(this, DisplayTodoActivity.class);
         startActivity(intent);
     }
 
+    public void deleteTodo(View view){
+        TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
+        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        Task task = db.getTask(Long.parseLong(hiddenIdView.getText().toString()));
+        TodoBrowseElement parentView = (TodoBrowseElement)view.getParent().getParent().getParent();
+        ((ViewGroup)parentView.getParent()).removeView(parentView);
+        db.deleteTask(task);
+    }
 }

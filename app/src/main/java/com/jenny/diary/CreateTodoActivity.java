@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
 
 public class CreateTodoActivity extends ActionBarActivity {
 
@@ -18,8 +17,7 @@ public class CreateTodoActivity extends ActionBarActivity {
 
     public void submitTodo(View view) {
         TaskDatabaseHandler db = new TaskDatabaseHandler(this);
-        Calendar c = Calendar.getInstance();
-        int time = c.get(Calendar.MILLISECOND);
+        long time = System.currentTimeMillis();
         EditText todoHeader = (EditText)findViewById(R.id.todo_create_item_title);
         EditText todoDetail = (EditText)findViewById(R.id.todo_create_item_body);
         Timestamp timestamp = new Timestamp(time);

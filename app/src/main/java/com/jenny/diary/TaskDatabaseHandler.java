@@ -64,16 +64,16 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    Task getTask(int id) {
+    Task getTask(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,
-                        KEY_HEADING, KEY_TIMESTAMP}, KEY_ID + "=?",
+                        KEY_HEADING, KEY_DETAILS, KEY_TIMESTAMP}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Task task = new Task(Integer.parseInt(cursor.getString(0)),
+        Task task = new Task(Long.parseLong(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2), Timestamp.valueOf(cursor.getString(3)));
         return task;
     }
@@ -88,7 +88,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Task task = new Task();
-                task.setID(Integer.parseInt(cursor.getString(0)));
+                task.setID(Long.parseLong(cursor.getString(0)));
                 task.setHeading(cursor.getString(1));
                 task.setDetails(cursor.getString(2));
                 task.setTimestamp(Timestamp.valueOf(cursor.getString(3)));

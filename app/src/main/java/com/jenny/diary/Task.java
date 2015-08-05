@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  */
 public class Task {
     //private variables
-    int _id;
+    long _id;
 
     String _heading;
     String _details;
@@ -18,26 +18,18 @@ public class Task {
 
     }
     // constructor
-    public Task(int id, String heading, String details, Timestamp timestamp){
+    public Task(long id, String heading, String details, Timestamp timestamp){
         this._id = id;
         this._heading = heading;
         this._details = details;
         this._timestamp = timestamp;
     }
 
-    // constructor
-    public Task(String heading, String details, Timestamp timestamp){
-        this._heading = heading;
-        this._details = details;
-        this._timestamp = timestamp;
-    }
-    // getting ID
-    public int getID(){
+    public long getID(){
         return this._id;
     }
 
-    // setting id
-    public void setID(int id){
+    public void setID(long id){
         this._id = id;
     }
 

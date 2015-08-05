@@ -3,7 +3,6 @@ package com.jenny.diary;
 import android.content.Context;
 import android.text.format.Time;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -24,15 +23,15 @@ public class TodoBrowseElement extends TableRow {
     }
 
     public void setTextValues(Task task) {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-
         TextView titleView = (TextView)findViewById(R.id.todo_browse_list_row_header);
         TextView dateView = (TextView)findViewById(R.id.todo_browse_list_row_time);
+        TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
 
         titleView.setText(task.getHeading());
         Date date = new Date(task.getTimestamp().getTime());
         SimpleDateFormat dateFormat = getSimpleDateFormatter(date);
         dateView.setText(dateFormat.format(date));
+        hiddenIdView.setText(String.valueOf(task.getTimestamp().getTime()));
     }
 
     private SimpleDateFormat getSimpleDateFormatter(Date date) {
@@ -56,4 +55,5 @@ public class TodoBrowseElement extends TableRow {
             return new SimpleDateFormat("d MMM yy");
         }
     }
+
 }
