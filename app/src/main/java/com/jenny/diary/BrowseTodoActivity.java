@@ -34,9 +34,8 @@ public class BrowseTodoActivity extends ActionBarActivity {
 
     public void displayTodo(View view) {
         TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
-        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
-        db.getTask(Long.parseLong(hiddenIdView.getText().toString()));
         Intent intent = new Intent(this, DisplayTodoActivity.class);
+        intent.putExtra("TASK", Long.parseLong(hiddenIdView.getText().toString()));
         startActivity(intent);
     }
 

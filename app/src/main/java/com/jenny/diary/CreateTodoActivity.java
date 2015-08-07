@@ -12,7 +12,7 @@ public class CreateTodoActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_todo);
+        setContentView(R.layout.activity_create_todo);
     }
 
     public void submitTodo(View view) {

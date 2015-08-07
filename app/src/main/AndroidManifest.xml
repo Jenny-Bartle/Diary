@@ -26,15 +26,14 @@
         </activity>
         <activity
             android:name=".BrowseTodoActivity"
-            android:label="@string/todo_create_title">
+            android:label="@string/todo_browse_title">
         </activity>
         <activity
             android:name=".CreateTodoActivity"
             android:label="@string/todo_create_title">
         </activity>
         <activity
-            android:name=".DisplayTodoActivity"
-            android:label="@string/todo_create_title">
+            android:name=".DisplayTodoActivity">
         </activity>
     </application>
 
