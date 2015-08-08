@@ -15,6 +15,8 @@ public class DisplayTodoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
 
+
+
         long taskId = intent.getLongExtra("TASK", (long) 0);
         TaskDatabaseHandler db = new TaskDatabaseHandler(this);
         Task task = db.getTask(taskId);
