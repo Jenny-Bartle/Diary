@@ -1,7 +1,6 @@
 package com.jenny.diary;
 
 import android.content.Context;
-import android.text.format.Time;
 import android.util.AttributeSet;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,31 +28,9 @@ public class TodoBrowseElement extends TableRow {
 
         titleView.setText(task.getHeading());
         Date date = new Date(task.getTimestamp().getTime());
-        SimpleDateFormat dateFormat = getSimpleDateFormatter(date);
+        SimpleDateFormat dateFormat = DateFormatUtil.getSimpleDateFormatter(date);
         dateView.setText(dateFormat.format(date));
         hiddenIdView.setText(String.valueOf(task.getTimestamp().getTime()));
-    }
-
-    private SimpleDateFormat getSimpleDateFormatter(Date date) {
-
-        Time startTime = new Time();
-        startTime.set(date.getTime());
-        int startDay = Time.getJulianDay(date.getTime(), startTime.gmtoff);
-
-        Date now = new Date(System.currentTimeMillis());
-        Time currentTime = new Time();
-        currentTime.set(now.getTime());
-        int currentDay = Time.getJulianDay(now.getTime(), currentTime.gmtoff);
-
-        int days = Math.abs(currentDay - startDay);
-
-        if (days == 0) {
-            return new SimpleDateFormat("h:mm a");
-        } else if (days <7) {
-            return new SimpleDateFormat("EEE");
-        } else {
-            return new SimpleDateFormat("d MMM yy");
-        }
     }
 
 }

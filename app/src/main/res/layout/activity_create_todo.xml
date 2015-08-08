@@ -18,7 +18,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/todo_create_item_title" />
+                android:id="@+id/create_todo_title" />
         </TableRow>
 
         <TableRow android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/todo_create_item_body" />
+                android:id="@+id/create_todo_body" />
         </TableRow>
 
     <Button
