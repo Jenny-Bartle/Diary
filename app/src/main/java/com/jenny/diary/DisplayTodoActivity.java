@@ -24,7 +24,9 @@ public class DisplayTodoActivity extends ActionBarActivity {
         TextView date = (TextView)findViewById(R.id.activity_display_todo_date);
         TextView detail = (TextView)findViewById(R.id.activity_display_todo_body);
 
-        ///date.setText(task.getTimestamp().toString());
+        System.out.println(task.getHeading());
+
+        date.setText(task.getTimestamp().toString());
         title.setText(task.getHeading());
         detail.setText(task.getDetails());
     }
