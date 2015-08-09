@@ -6,19 +6,24 @@ import java.sql.Timestamp;
  * Created by Jenny on 30/07/2015.
  */
 public class Task {
-    //private variables
-    long _id;
 
+    long _id;
     String _heading;
     String _details;
     Timestamp _timestamp;
+    Timestamp _dueDate;
 
-    // Empty constructor
-    public Task(){
+    public Task() {
+        }
 
-    }
-    // constructor
     public Task(long id, String heading, String details, Timestamp timestamp){
+        this._id = id;
+        this._heading = heading;
+        this._details = details;
+        this._timestamp = timestamp;
+    }
+
+    public Task(long id, String heading, String details, Timestamp timestamp, Timestamp _dueDate){
         this._id = id;
         this._heading = heading;
         this._details = details;
@@ -55,6 +60,14 @@ public class Task {
 
     public void setTimestamp(Timestamp _timestamp) {
         this._timestamp = _timestamp;
+    }
+
+    public Timestamp getDueDate() {
+        return _dueDate;
+    }
+
+    public void setDueDate(Timestamp _dueDate) {
+        this._dueDate = _dueDate;
     }
 
 }

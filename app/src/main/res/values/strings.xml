@@ -21,6 +21,7 @@
     <string name="todo_create_title">Create to-do</string>
     <string name="todo_create_item_title">Heading</string>
     <string name="todo_create_item_body">Details</string>
+    <string name="todo_create_date_pick">Pick due date</string>
 
     <!-- To-do browse page -->
     <string name="todo_browse_title">Create to-do</string>

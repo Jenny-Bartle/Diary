@@ -26,6 +26,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_HEADING = "name";
     private static final String KEY_DETAILS = "details";
     private static final String KEY_TIMESTAMP = "timestamp";
+    private static final String KEY_DUEDATE = "due";
 
     public TaskDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,8 +36,11 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_HEADING + " TEXT,"
-                + KEY_DETAILS + " TEXT, " + KEY_TIMESTAMP + " TIMESTAMP" + ")";
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_HEADING + " TEXT,"
+                + KEY_DETAILS + " TEXT, "
+                + KEY_TIMESTAMP + " TIMESTAMP"
+                + KEY_DUEDATE + " DUEDATE" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
     }
 
@@ -59,6 +63,10 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DETAILS, task.getDetails());
         values.put(KEY_TIMESTAMP, task.getTimestamp().toString());
 
+        if(task.getDueDate() != null) {
+            values.put(KEY_DUEDATE, task.getDueDate().toString());
+        }
+
         // Inserting Row
         db.insert(TABLE_TASKS, null, values);
         db.close(); // Closing database connection
@@ -68,7 +76,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,
-                        KEY_HEADING, KEY_DETAILS, KEY_TIMESTAMP}, KEY_ID + "=?",
+                        KEY_HEADING, KEY_DETAILS, KEY_TIMESTAMP, KEY_DUEDATE}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -92,6 +100,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
                 task.setHeading(cursor.getString(1));
                 task.setDetails(cursor.getString(2));
                 task.setTimestamp(Timestamp.valueOf(cursor.getString(3)));
+                task.setDueDate(Timestamp.valueOf(cursor.getString(4)));
                 taskList.add(task);
             } while (cursor.moveToNext());
         }
@@ -107,6 +116,9 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_HEADING, task.getHeading());
         values.put(KEY_DETAILS, task.getDetails());
         values.put(KEY_TIMESTAMP, task.getTimestamp().toString());
+        if(task.getDueDate() != null) {
+            values.put(KEY_DUEDATE, task.getDueDate().toString());
+        }
 
         // updating row
         return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
