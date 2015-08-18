@@ -25,15 +25,15 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".BrowseTodoActivity"
+            android:name=".todo.BrowseTodoActivity"
             android:label="@string/todo_browse_title">
         </activity>
         <activity
-            android:name=".CreateTodoActivity"
+            android:name=".todo.CreateTodoActivity"
             android:label="@string/todo_create_title">
         </activity>
         <activity
-            android:name=".DisplayTodoActivity">
+            android:name=".todo.DisplayTodoActivity">
         </activity>
     </application>
 

@@ -1,10 +1,14 @@
-package com.jenny.diary;
+package com.jenny.diary.todo;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.jenny.diary.DatePickerFragment;
+import com.jenny.diary.R;
+import com.jenny.diary.Task;
 
 import java.sql.Timestamp;
 

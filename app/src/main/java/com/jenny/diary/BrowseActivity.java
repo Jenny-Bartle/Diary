@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
+import com.jenny.diary.todo.BrowseTodoActivity;
+import com.jenny.diary.todo.CreateTodoActivity;
+
 /**
  * Created by Jenny on 29/07/2015.
  */

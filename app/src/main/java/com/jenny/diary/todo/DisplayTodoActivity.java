@@ -1,9 +1,13 @@
-package com.jenny.diary;
+package com.jenny.diary.todo;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.EditText;
+
+import com.jenny.diary.DateFormatUtil;
+import com.jenny.diary.R;
+import com.jenny.diary.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,6 +40,25 @@ public class DisplayTodoActivity extends ActionBarActivity {
     }
 
     public void updateTodo(){
-
+// copied from create
+        // call updatetodo
+//        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+//        long time = System.currentTimeMillis();
+//        EditText todoHeader = (EditText)findViewById(R.id.create_todo_title);
+//        EditText todoDetail = (EditText)findViewById(R.id.create_todo_body);
+//        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
+//        Timestamp timestamp = new Timestamp(time);
+//
+//        Task taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp);
+//
+//        if(hiddenDueDate != null) {
+//            Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(hiddenDueDate.getText().toString()));
+//            taskToAdd.setDueDate(hiddenTimeDue);
+//        }
+//
+//        db.addTask(taskToAdd);
+//
+//        // Go back to calling page
+//        finish();
     }
 }

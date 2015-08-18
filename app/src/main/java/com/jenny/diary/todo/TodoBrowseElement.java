@@ -1,9 +1,13 @@
-package com.jenny.diary;
+package com.jenny.diary.todo;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.jenny.diary.DateFormatUtil;
+import com.jenny.diary.R;
+import com.jenny.diary.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

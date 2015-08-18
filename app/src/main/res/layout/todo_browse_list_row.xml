@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jenny.diary.TodoBrowseElement xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jenny.diary.todo.TodoBrowseElement xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:onClick="displayTodo">
@@ -31,13 +31,13 @@
                 android:id="@+id/todo_browse_list_row_delete"
                 android:onClick="deleteTodo"/>
 
-        </TableRow>
-        <TextView
-            android:layout_height="0dp"
-            android:layout_width="0dp"
-            android:id="@+id/todo_browse_list_row_id"
-            android:visibility="invisible" />
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:id="@+id/todo_browse_list_row_id"
+                android:visibility="invisible" />
 
+        </TableRow>
     </TableLayout>
 
-</com.jenny.diary.TodoBrowseElement>
+</com.jenny.diary.todo.TodoBrowseElement>
