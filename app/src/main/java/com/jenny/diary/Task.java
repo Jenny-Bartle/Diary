@@ -7,67 +7,68 @@ import java.sql.Timestamp;
  */
 public class Task {
 
-    long _id;
-    String _heading;
-    String _details;
-    Timestamp _timestamp;
-    Timestamp _dueDate;
+    long id;
+    String heading;
+    String details;
+    Timestamp timestamp;
+    Timestamp dueDate;
 
     public Task() {
         }
 
     public Task(long id, String heading, String details, Timestamp timestamp){
-        this._id = id;
-        this._heading = heading;
-        this._details = details;
-        this._timestamp = timestamp;
+        this.id = id;
+        this.heading = heading;
+        this.details = details;
+        this.timestamp = timestamp;
     }
 
-    public Task(long id, String heading, String details, Timestamp timestamp, Timestamp _dueDate){
-        this._id = id;
-        this._heading = heading;
-        this._details = details;
-        this._timestamp = timestamp;
+    public Task(long id, String heading, String details, Timestamp timestamp, Timestamp dueDate){
+        this.id = id;
+        this.heading = heading;
+        this.details = details;
+        this.timestamp = timestamp;
+        this.dueDate = dueDate;
     }
 
-    public long getID(){
-        return this._id;
+    public long getId(){
+        return this.id;
     }
 
-    public void setID(long id){
-        this._id = id;
+    public void setId(long id){
+        this.id = id;
     }
 
     public String getDetails() {
-        return _details;
+        return details;
     }
 
     public void setDetails(String _details) {
-        this._details = _details;
+        this.details = _details;
     }
 
     public String getHeading() {
-        return _heading;
+        return heading;
     }
 
     public void setHeading(String _heading) {
-        this._heading = _heading;
+        this.heading = _heading;
     }
 
     public Timestamp getTimestamp() {
-        return _timestamp;
+        return timestamp;
     }
 
     public void setTimestamp(Timestamp _timestamp) {
-        this._timestamp = _timestamp;
+        this.timestamp = _timestamp;
     }
 
     public Timestamp getDueDate() {
-        return _dueDate;
+        return dueDate;
     }
 
     public void setDueDate(Timestamp _dueDate) {
-        this._dueDate = _dueDate;
+        this.dueDate = _dueDate;
     }
 
 }

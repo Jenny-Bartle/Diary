@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.jenny.diary.Category;
+import com.jenny.diary.Task;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +29,10 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
 
     // Goals Table Columns names
     private static final String KEY_ID = "id";
-    private static final String KEY_HEADING = "name";
-    private static final String KEY_DETAILS = "details";
-    private static final String KEY_TIMESTAMP = "timestamp";
-    private static final String KEY_DUEDATE = "due";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_TASKS = "tasks";
+    private static final String KEY_PRIORITY = "priority";
+    private static final String KEY_CATEGORY = "category";
 
     public GoalDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,10 +43,10 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_HEADING + " TEXT,"
-                + KEY_DETAILS + " TEXT, "
-                + KEY_TIMESTAMP + " TIMESTAMP"
-                + KEY_DUEDATE + " TIMESTAMP" + ")";
+                + KEY_NAME + " TEXT,"
+                + KEY_TASKS + " TEXT, "
+                + KEY_PRIORITY + " INTEGER"
+                + KEY_CATEGORY + " TIMESTAMP" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
     }
 
@@ -61,13 +64,13 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, goal.getID());
-        values.put(KEY_HEADING, goal.getHeading());
-        values.put(KEY_DETAILS, goal.getDetails());
-        values.put(KEY_TIMESTAMP, goal.getTimestamp().toString());
+        values.put(KEY_ID, goal.getId());
+        values.put(KEY_NAME, goal.getName());
+        values.put(KEY_TASKS, goal.getTasks());
+        values.put(KEY_PRIORITY, goal.getPriority());
 
-        if(goal.getDueDate() != null) {
-            values.put(KEY_DUEDATE, goal.getDueDate().toString());
+        if(goal.getCategory() != null) {
+            values.put(KEY_CATEGORY, goal.getCategory());
         }
 
         // Inserting Row
@@ -79,13 +82,13 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,
-                        KEY_HEADING, KEY_DETAILS, KEY_TIMESTAMP, KEY_DUEDATE}, KEY_ID + "=?",
+                        KEY_NAME, KEY_TASKS, KEY_PRIORITY, KEY_CATEGORY}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Goal goal = new Goal(Long.parseLong(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2), Timestamp.valueOf(cursor.getString(3)));
+                cursor.getString(1), Integer.valueOf(cursor.getString(2)), Timestamp.valueOf(cursor.getString(3)));
         return goal;
     }
 
@@ -99,11 +102,11 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Goal goal = new Goal();
-                goal.setID(Long.parseLong(cursor.getString(0)));
-                goal.setHeading(cursor.getString(1));
-                goal.setDetails(cursor.getString(2));
-                goal.setTimestamp(Timestamp.valueOf(cursor.getString(3)));
-                goal.setDueDate(Timestamp.valueOf(cursor.getString(4)));
+                goal.setId(Long.parseLong(cursor.getString(0)));
+                goal.setName(cursor.getString(1));
+                goal.setTasks(cursor.getString(2));
+                goal.setPriority(Integer.valueOf(cursor.getString(3)));
+                goal.setCategory(Category.valueOf(cursor.getString(4)));
                 goalList.add(goal);
             } while (cursor.moveToNext());
         }
@@ -115,23 +118,23 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, goal.getID());
-        values.put(KEY_HEADING, goal.getHeading());
-        values.put(KEY_DETAILS, goal.getDetails());
-        values.put(KEY_TIMESTAMP, goal.getTimestamp().toString());
-        if(goal.getDueDate() != null) {
-            values.put(KEY_DUEDATE, goal.getDueDate().toString());
+        values.put(KEY_ID, goal.getId());
+        values.put(KEY_NAME, goal.getName());
+        values.put(KEY_TASKS, goal.getTasks());
+        values.put(KEY_PRIORITY, goal.getPriority());
+        if(goal.getCategory() != null) {
+            values.put(KEY_CATEGORY, goal.getCategory().toString());
         }
 
         // updating row
         return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(goal.getID()) });
+                new String[] { String.valueOf(goal.getId()) });
     }
 
     public void deleteGoal(Goal goal) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TASKS, KEY_ID + " = ?",
-                new String[]{String.valueOf(goal.getID())});
+                new String[]{String.valueOf(goal.getId())});
         db.close();
     }
 
