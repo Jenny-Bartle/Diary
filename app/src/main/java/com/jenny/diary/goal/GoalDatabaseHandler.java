@@ -6,10 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.jenny.diary.Category;
-import com.jenny.diary.Task;
+import com.jenny.diary.category.Category;
+import com.jenny.diary.category.CategoryDatabaseHandler;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "goalsManager";
 
     // Goals table name
-    private static final String TABLE_TASKS = "contacts";
+    private static final String TABLE_GOALS = "goals";
 
     // Goals Table Columns names
     private static final String KEY_ID = "id";
@@ -33,20 +32,22 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_TASKS = "tasks";
     private static final String KEY_PRIORITY = "priority";
     private static final String KEY_CATEGORY = "category";
+    private final Context context;
 
     public GoalDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
+        String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_GOALS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_NAME + " TEXT,"
-                + KEY_TASKS + " TEXT, "
+                + KEY_TASKS + " ARRAY, "
                 + KEY_PRIORITY + " INTEGER"
-                + KEY_CATEGORY + " TIMESTAMP" + ")";
+                + KEY_CATEGORY + " INTEGER" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
     }
 
@@ -54,60 +55,44 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOALS);
 
         // Create tables again
         onCreate(db);
     }
 
-    void addGoal(Goal goal) {
+    public void addGoal(Goal goal) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_ID, goal.getId());
-        values.put(KEY_NAME, goal.getName());
-        values.put(KEY_TASKS, goal.getTasks());
-        values.put(KEY_PRIORITY, goal.getPriority());
-
-        if(goal.getCategory() != null) {
-            values.put(KEY_CATEGORY, goal.getCategory());
-        }
+        ContentValues values = initialiseContentValues(goal);
 
         // Inserting Row
-        db.insert(TABLE_TASKS, null, values);
+        db.insert(TABLE_GOALS, null, values);
         db.close(); // Closing database connection
     }
 
-    Goal getGoal(long id) {
+    public Goal getGoal(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,
+        Cursor cursor = db.query(TABLE_GOALS, new String[]{KEY_ID,
                         KEY_NAME, KEY_TASKS, KEY_PRIORITY, KEY_CATEGORY}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Goal goal = new Goal(Long.parseLong(cursor.getString(0)),
-                cursor.getString(1), Integer.valueOf(cursor.getString(2)), Timestamp.valueOf(cursor.getString(3)));
-        return goal;
+        return constructGoal(cursor);
     }
 
     public List<Goal> getAllGoals() {
         List<Goal> goalList = new ArrayList<Goal>();
-        String selectQuery = "SELECT  * FROM " + TABLE_TASKS;
+        String selectQuery = "SELECT  * FROM " + TABLE_GOALS;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                Goal goal = new Goal();
-                goal.setId(Long.parseLong(cursor.getString(0)));
-                goal.setName(cursor.getString(1));
-                goal.setTasks(cursor.getString(2));
-                goal.setPriority(Integer.valueOf(cursor.getString(3)));
-                goal.setCategory(Category.valueOf(cursor.getString(4)));
-                goalList.add(goal);
+                goalList.add(constructGoal(cursor));
             } while (cursor.moveToNext());
         }
 
@@ -117,25 +102,45 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     public int updateGoal(Goal goal) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_ID, goal.getId());
-        values.put(KEY_NAME, goal.getName());
-        values.put(KEY_TASKS, goal.getTasks());
-        values.put(KEY_PRIORITY, goal.getPriority());
-        if(goal.getCategory() != null) {
-            values.put(KEY_CATEGORY, goal.getCategory().toString());
-        }
+        ContentValues values = initialiseContentValues(goal);
 
         // updating row
-        return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
+        return db.update(TABLE_GOALS, values, KEY_ID + " = ?",
                 new String[] { String.valueOf(goal.getId()) });
     }
 
     public void deleteGoal(Goal goal) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TASKS, KEY_ID + " = ?",
+        db.delete(TABLE_GOALS, KEY_ID + " = ?",
                 new String[]{String.valueOf(goal.getId())});
         db.close();
     }
 
+    private Goal constructGoal(Cursor cursor) {
+        Category category = null;
+        if(cursor.getCount() == 5) {
+            CategoryDatabaseHandler categoryDatabaseHandler = new CategoryDatabaseHandler(context);
+            category = categoryDatabaseHandler.getCategory(Integer.parseInt(cursor.getString(4)));
+        }
+
+        List tasks = new ArrayList();
+        //tasks = (Array)cursor.getString(2);
+        return new Goal(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                tasks,
+                Integer.valueOf(cursor.getString(3)),
+                category);
+    }
+
+    private ContentValues initialiseContentValues(Goal goal) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, goal.getId());
+        values.put(KEY_NAME, goal.getName());
+        values.put(KEY_TASKS, goal.getTasks().toArray().toString());
+        values.put(KEY_PRIORITY, goal.getPriority());
+        if(goal.getCategory() != null) {
+            values.put(KEY_CATEGORY, goal.getCategory().getId());
+        }
+        return values;
+    }
 }

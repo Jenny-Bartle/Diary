@@ -1,6 +1,6 @@
 package com.jenny.diary.goal;
 
-import com.jenny.diary.Category;
+import com.jenny.diary.category.Category;
 import com.jenny.diary.Task;
 
 import java.util.List;

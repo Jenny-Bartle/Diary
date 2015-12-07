@@ -28,11 +28,12 @@ public class CreateTodoActivity extends FragmentActivity {
         TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
         Timestamp timestamp = new Timestamp(time);
 
-        Task taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp);
-
+        Task taskToAdd;
         if(hiddenDueDate != null) {
             Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(hiddenDueDate.getText().toString()));
-            taskToAdd.setDueDate(hiddenTimeDue);
+            taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp, hiddenTimeDue);
+        } else {
+            taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp);
         }
 
         db.addTask(taskToAdd);

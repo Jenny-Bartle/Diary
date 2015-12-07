@@ -7,14 +7,11 @@ import java.sql.Timestamp;
  */
 public class Task {
 
-    long id;
-    String heading;
-    String details;
-    Timestamp timestamp;
-    Timestamp dueDate;
-
-    public Task() {
-        }
+    private long id;
+    private String heading;
+    private String details;
+    private Timestamp timestamp;
+    private Timestamp dueDate;
 
     public Task(long id, String heading, String details, Timestamp timestamp){
         this.id = id;
@@ -43,32 +40,15 @@ public class Task {
         return details;
     }
 
-    public void setDetails(String _details) {
-        this.details = _details;
-    }
-
     public String getHeading() {
         return heading;
-    }
-
-    public void setHeading(String _heading) {
-        this.heading = _heading;
     }
 
     public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp _timestamp) {
-        this.timestamp = _timestamp;
-    }
-
     public Timestamp getDueDate() {
         return dueDate;
     }
-
-    public void setDueDate(Timestamp _dueDate) {
-        this.dueDate = _dueDate;
-    }
-
 }

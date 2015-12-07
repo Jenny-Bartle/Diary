@@ -21,7 +21,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "tasksManager";
 
     // Tasks table name
-    private static final String TABLE_TASKS = "contacts";
+    private static final String TABLE_TASKS = "tasks";
 
     // Tasks Table Columns names
     private static final String KEY_ID = "id";
@@ -59,7 +59,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = initialiseDbColumns(task);
+        ContentValues values = initialiseContentValues(task);
 
         // Inserting Row
         db.insert(TABLE_TASKS, null, values);
@@ -75,8 +75,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Task task = getTask(cursor);
-        return task;
+        return getTask(cursor);
     }
 
     public List<Task> getAllTasks() {
@@ -98,7 +97,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     public int updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = initialiseDbColumns(task);
+        ContentValues values = initialiseContentValues(task);
 
         // updating row
         return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
@@ -121,7 +120,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
                 cursor.getString(1), cursor.getString(2), Timestamp.valueOf(cursor.getString(3)), dueDate);
     }
 
-    private ContentValues initialiseDbColumns(Task task) {
+    private ContentValues initialiseContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, task.getId());
         values.put(KEY_HEADING, task.getHeading());
