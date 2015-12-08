@@ -41,7 +41,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_HEADING + " TEXT,"
                 + KEY_DETAILS + " TEXT, "
-                + KEY_TIMESTAMP + " TIMESTAMP"
+                + KEY_TIMESTAMP + " TIMESTAMP, "
                 + KEY_DUEDATE + " TIMESTAMP" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
     }

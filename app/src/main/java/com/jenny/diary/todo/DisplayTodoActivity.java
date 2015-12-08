@@ -3,6 +3,7 @@ package com.jenny.diary.todo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class DisplayTodoActivity extends ActionBarActivity {
         detail.setText(task.getDetails());
     }
 
-    public void updateTodo(){
+    public void updateTodo(View view) {
         TaskDatabaseHandler db = new TaskDatabaseHandler(this);
         long time = System.currentTimeMillis();
         EditText todoHeader = (EditText)findViewById(R.id.create_todo_title);

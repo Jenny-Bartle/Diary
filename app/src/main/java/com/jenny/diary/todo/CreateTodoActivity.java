@@ -25,11 +25,11 @@ public class CreateTodoActivity extends ActionBarActivity {
         long time = System.currentTimeMillis();
         EditText todoHeader = (EditText)findViewById(R.id.create_todo_title);
         EditText todoDetail = (EditText)findViewById(R.id.create_todo_body);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
         Timestamp timestamp = new Timestamp(time);
+        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
 
         Task taskToAdd;
-        if(hiddenDueDate != null) {
+        if(hiddenDueDate.getText() != "") {
             Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(hiddenDueDate.getText().toString()));
             taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp, hiddenTimeDue);
         } else {
