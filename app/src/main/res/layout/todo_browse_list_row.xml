@@ -11,7 +11,7 @@
         android:stretchColumns="0"
         android:padding="5dp">
 
-        <TableRow>
+        <TableRow android:onClick="displayTodo">
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"

@@ -123,6 +123,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     private ContentValues initialiseContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, task.getId());
+        // TODO should handle if these are null
         values.put(KEY_HEADING, task.getHeading());
         values.put(KEY_DETAILS, task.getDetails());
         values.put(KEY_TIMESTAMP, task.getTimestamp().toString());

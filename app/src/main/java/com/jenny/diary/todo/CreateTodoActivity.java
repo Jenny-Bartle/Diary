@@ -1,7 +1,7 @@
 package com.jenny.diary.todo;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +12,7 @@ import com.jenny.diary.Task;
 
 import java.sql.Timestamp;
 
-public class CreateTodoActivity extends FragmentActivity {
+public class CreateTodoActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,6 +24,9 @@
     <string name="todo_create_date_pick">Pick due date</string>
 
     <!-- To-do browse page -->
-    <string name="todo_browse_title">Create to-do</string>
+    <string name="todo_browse_title">Browse to-do</string>
+
+    <!-- To-do display page -->
+    <string name="todo_display_title">Edit to-do</string>
 
 </resources>

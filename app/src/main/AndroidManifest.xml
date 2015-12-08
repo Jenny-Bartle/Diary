@@ -34,6 +34,7 @@
         </activity>
         <activity
             android:name=".todo.DisplayTodoActivity">
+            android:label="@string/todo_display_title">
         </activity>
     </application>
 
