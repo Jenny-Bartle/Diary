@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.jenny.diary.DateFormatUtil;
 import com.jenny.diary.R;
-import com.jenny.diary.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

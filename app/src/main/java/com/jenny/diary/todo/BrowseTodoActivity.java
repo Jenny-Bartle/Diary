@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jenny.diary.R;
-import com.jenny.diary.Task;
 
 import java.util.List;
 

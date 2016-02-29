@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.jenny.diary.DatePickerFragment;
 import com.jenny.diary.R;
-import com.jenny.diary.Task;
 
 import java.sql.Timestamp;
 

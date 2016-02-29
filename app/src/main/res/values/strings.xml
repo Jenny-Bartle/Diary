@@ -28,5 +28,6 @@
 
     <!-- To-do display page -->
     <string name="todo_display_title">Edit to-do</string>
+    <string name="todo_display_date_pick">Change due date</string>
 
 </resources>

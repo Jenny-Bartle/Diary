@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.jenny.diary.DateFormatUtil;
 import com.jenny.diary.R;
-import com.jenny.diary.Task;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -34,21 +33,23 @@ public class DisplayTodoActivity extends ActionBarActivity {
         EditText title = (EditText)findViewById(R.id.activity_display_todo_title);
         EditText timestamp = (EditText)findViewById(R.id.activity_display_todo_timestamp);
         EditText detail = (EditText)findViewById(R.id.activity_display_todo_body);
+        TextView due = (TextView)findViewById(R.id.todo_display_due);
 
         Date date = new Date(task.getTimestamp().getTime());
         SimpleDateFormat dateFormat = DateFormatUtil.getSimpleDateFormatter(date);
         timestamp.setText(dateFormat.format(date));
         title.setText(task.getHeading());
         detail.setText(task.getDetails());
+        due.setText(dateFormat.format(task.getDueDate().getTime()));
     }
 
     public void updateTodo(View view) {
         TaskDatabaseHandler db = new TaskDatabaseHandler(this);
         long time = System.currentTimeMillis();
-        EditText todoHeader = (EditText)findViewById(R.id.create_todo_title);
-        EditText todoDetail = (EditText)findViewById(R.id.create_todo_body);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
         Timestamp timestamp = new Timestamp(time);
+        EditText todoHeader = (EditText)findViewById(R.id.activity_display_todo_title);
+        EditText todoDetail = (EditText)findViewById(R.id.activity_display_todo_body);
+        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_display_due);
 
         Task taskToAdd;
         if(hiddenDueDate != null) {
