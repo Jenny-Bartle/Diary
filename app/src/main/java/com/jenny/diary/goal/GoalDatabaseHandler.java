@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jenny.diary.category.Category;
-import com.jenny.diary.category.CategoryDatabaseHandler;
+import com.jenny.diary.todo.TaskDatabaseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +42,13 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_GOALS + "("
+        String CREATE_GOALS_TABLE = "CREATE TABLE " + TABLE_GOALS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_NAME + " TEXT,"
                 + KEY_TASKS + " ARRAY, "
                 + KEY_PRIORITY + " INTEGER"
                 + KEY_CATEGORY + " INTEGER" + ")";
-        db.execSQL(CREATE_TASKS_TABLE);
+        db.execSQL(CREATE_GOALS_TABLE);
     }
 
     // Upgrading database
@@ -119,7 +119,7 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
     private Goal constructGoal(Cursor cursor) {
         Category category = null;
         if(cursor.getCount() == 5) {
-            CategoryDatabaseHandler categoryDatabaseHandler = new CategoryDatabaseHandler(context);
+            TaskDatabaseHandler categoryDatabaseHandler = new TaskDatabaseHandler(context);
             category = categoryDatabaseHandler.getCategory(Integer.parseInt(cursor.getString(4)));
         }
 

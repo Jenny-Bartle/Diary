@@ -30,4 +30,9 @@
     <string name="todo_display_title">Edit to-do</string>
     <string name="todo_display_date_pick">Change due date</string>
 
+    <!-- Category create page -->
+    <string name="category_create_title">Create category</string>
+    <string name="category_create_item_title">Heading</string>
+    <string name="category_create_add_todos">Associate to-dos with category</string>
+
 </resources>

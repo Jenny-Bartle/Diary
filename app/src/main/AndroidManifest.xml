@@ -36,6 +36,10 @@
             android:name=".todo.DisplayTodoActivity">
             android:label="@string/todo_display_title">
         </activity>
+        <activity
+            android:name=".category.CreateCategoryActivity"
+            android:label="@string/category_create_title">
+        </activity>
     </application>
 
 </manifest>

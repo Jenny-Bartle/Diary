@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.jenny.diary.category.Category;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +17,10 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 1;
 
-    // Database Name
-    private static final String DATABASE_NAME = "tasksManager";
-
-    // Tasks table name
+    // Database and table names
+    private static final String DATABASE_NAME = "DiaryAppData";
     private static final String TABLE_TASKS = "tasks";
+    private static final String TABLE_CATEGORIES = "categories";
 
     // Tasks Table Columns names
     private static final String KEY_ID = "id";
@@ -42,6 +43,13 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
                 + KEY_TIMESTAMP + " TIMESTAMP, "
                 + KEY_DUEDATE + " TIMESTAMP" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
+
+        String CREATE_CATEGORIES_TABLE = "CREATE TABLE " + TABLE_CATEGORIES + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_HEADING + " TEXT,"
+                + KEY_HEADING + " TEXT,"
+                + ")";
+        db.execSQL(CREATE_CATEGORIES_TABLE);
     }
 
     // Upgrading database
@@ -54,6 +62,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Tasks
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -99,7 +108,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
 
         // updating row
         return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(task.getId()) });
+                new String[]{String.valueOf(task.getId())});
     }
 
     public void deleteTask(Task task) {
@@ -129,5 +138,22 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_DUEDATE, task.getDueDate().toString());
         }
         return values;
+    }
+
+
+    public Category getCategory(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_CATEGORIES, new String[]{KEY_ID,
+                        KEY_HEADING}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        return constructCategory(cursor);
+    }
+
+    private Category constructCategory(Cursor cursor) {
+        return new Category(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
     }
 }
