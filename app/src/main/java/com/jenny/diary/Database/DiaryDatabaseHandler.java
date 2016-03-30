@@ -1,4 +1,4 @@
-package com.jenny.diary.todo;
+package com.jenny.diary.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,12 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jenny.diary.category.Category;
+import com.jenny.diary.todo.Task;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskDatabaseHandler extends SQLiteOpenHelper {
+public class DiaryDatabaseHandler extends SQLiteOpenHelper {
 
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -21,15 +22,18 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "DiaryAppData";
     private static final String TABLE_TASKS = "tasks";
     private static final String TABLE_CATEGORIES = "categories";
+    private static final String TABLE_CATEGORIES_TASKS = "categories_tasks";
 
-    // Tasks Table Columns names
+    // Table Columns names
     private static final String KEY_ID = "id";
+    private static final String KEY_TASK_ID = "task_id";
+    private static final String KEY_CATEGORY_ID = "category_id";
     private static final String KEY_HEADING = "name";
     private static final String KEY_DETAILS = "details";
     private static final String KEY_TIMESTAMP = "timestamp";
     private static final String KEY_DUEDATE = "due";
 
-    public TaskDatabaseHandler(Context context) {
+    public DiaryDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -50,6 +54,13 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
                 + KEY_HEADING + " TEXT,"
                 + ")";
         db.execSQL(CREATE_CATEGORIES_TABLE);
+
+        String CREATE_CATEGORIES_TODO_TABLE = "CREATE TABLE " + TABLE_CATEGORIES_TASKS + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_TASK_ID + " INTEGER,"
+                + KEY_CATEGORY_ID + " INTEGER,"
+                + ")";
+        db.execSQL(CREATE_CATEGORIES_TODO_TABLE);
     }
 
     // Upgrading database
@@ -57,6 +68,8 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIES_TASKS);
 
         // Create tables again
         onCreate(db);
@@ -66,7 +79,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = initialiseContentValues(task);
+        ContentValues values = initialiseTask(task);
 
         // Inserting Row
         db.insert(TABLE_TASKS, null, values);
@@ -104,7 +117,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
     public int updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = initialiseContentValues(task);
+        ContentValues values = initialiseTask(task);
 
         // updating row
         return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
@@ -127,7 +140,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
                 cursor.getString(1), cursor.getString(2), Timestamp.valueOf(cursor.getString(3)), dueDate);
     }
 
-    private ContentValues initialiseContentValues(Task task) {
+    private ContentValues initialiseTask(Task task) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, task.getId());
         // TODO should handle if these are null
@@ -140,7 +153,6 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         return values;
     }
 
-
     public Category getCategory(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -150,10 +162,7 @@ public class TaskDatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        return constructCategory(cursor);
-    }
-
-    private Category constructCategory(Cursor cursor) {
+        db.close();
         return new Category(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
     }
 }

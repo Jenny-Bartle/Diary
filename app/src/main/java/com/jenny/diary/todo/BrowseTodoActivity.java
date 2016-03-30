@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jenny.diary.Database.DiaryDatabaseHandler;
 import com.jenny.diary.R;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class BrowseTodoActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         List<Task> tasks = db.getAllTasks();
         LayoutInflater li = LayoutInflater.from(this);
         LinearLayout todosView = (LinearLayout)li.inflate(R.layout.activity_browse_todos, null);
@@ -43,7 +44,7 @@ public class BrowseTodoActivity extends ActionBarActivity {
 
     public void deleteTodo(View view){
         TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
-        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         Task task = db.getTask(Long.parseLong(hiddenIdView.getText().toString()));
         TodoBrowseElement parentView = (TodoBrowseElement)view.getParent().getParent().getParent();
         ((ViewGroup)parentView.getParent()).removeView(parentView);

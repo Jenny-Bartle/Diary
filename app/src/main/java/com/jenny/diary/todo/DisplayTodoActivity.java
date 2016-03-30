@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jenny.diary.Database.DiaryDatabaseHandler;
 import com.jenny.diary.DateFormatUtil;
 import com.jenny.diary.R;
 
@@ -26,7 +27,7 @@ public class DisplayTodoActivity extends ActionBarActivity {
         setContentView(R.layout.activity_display_todo);
 
         long taskId = intent.getLongExtra("TASK", (long) 0);
-        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         Task task = db.getTask(taskId);
         this.setTitle(task.getHeading());
 
@@ -44,7 +45,7 @@ public class DisplayTodoActivity extends ActionBarActivity {
     }
 
     public void updateTodo(View view) {
-        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         long time = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(time);
         EditText todoHeader = (EditText)findViewById(R.id.activity_display_todo_title);

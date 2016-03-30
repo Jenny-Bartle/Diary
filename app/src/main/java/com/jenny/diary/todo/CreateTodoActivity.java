@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jenny.diary.Database.DiaryDatabaseHandler;
 import com.jenny.diary.DatePickerFragment;
 import com.jenny.diary.R;
 
@@ -20,7 +21,7 @@ public class CreateTodoActivity extends ActionBarActivity {
     }
 
     public void submitTodo(View view) {
-        TaskDatabaseHandler db = new TaskDatabaseHandler(this);
+        DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         long time = System.currentTimeMillis();
         EditText todoHeader = (EditText)findViewById(R.id.create_todo_title);
         EditText todoDetail = (EditText)findViewById(R.id.create_todo_body);
