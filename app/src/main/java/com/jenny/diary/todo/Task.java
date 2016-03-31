@@ -1,6 +1,7 @@
 package com.jenny.diary.todo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Jenny on 30/07/2015.
@@ -12,6 +13,7 @@ public class Task {
     private String details;
     private Timestamp timestamp;
     private Timestamp dueDate;
+    private List<Long> categories;
 
     public Task(long id, String heading, String details, Timestamp timestamp){
         this.id = id;
@@ -50,5 +52,13 @@ public class Task {
 
     public Timestamp getDueDate() {
         return dueDate;
+    }
+
+    public List<Long> getCategories() {
+        return categories;
+    }
+
+    public void addCategory(long category) {
+        this.categories.add(category);
     }
 }

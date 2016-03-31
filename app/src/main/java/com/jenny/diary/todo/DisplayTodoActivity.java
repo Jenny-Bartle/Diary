@@ -28,7 +28,7 @@ public class DisplayTodoActivity extends ActionBarActivity {
 
         long taskId = intent.getLongExtra("TASK", (long) 0);
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
-        Task task = db.getTask(taskId);
+        Task task = db.readTask(taskId);
         this.setTitle(task.getHeading());
 
         EditText title = (EditText)findViewById(R.id.activity_display_todo_title);

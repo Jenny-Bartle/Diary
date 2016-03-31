@@ -23,7 +23,7 @@ public class BrowseTodoActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
-        List<Task> tasks = db.getAllTasks();
+        List<Task> tasks = db.readAllTasks();
         LayoutInflater li = LayoutInflater.from(this);
         LinearLayout todosView = (LinearLayout)li.inflate(R.layout.activity_browse_todos, null);
         setContentView(todosView);
@@ -45,7 +45,7 @@ public class BrowseTodoActivity extends ActionBarActivity {
     public void deleteTodo(View view){
         TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
-        Task task = db.getTask(Long.parseLong(hiddenIdView.getText().toString()));
+        Task task = db.readTask(Long.parseLong(hiddenIdView.getText().toString()));
         TodoBrowseElement parentView = (TodoBrowseElement)view.getParent().getParent().getParent();
         ((ViewGroup)parentView.getParent()).removeView(parentView);
         db.deleteTask(task);

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jenny.diary.category.Category;
-import com.jenny.diary.Database.DiaryDatabaseHandler;
 import com.jenny.diary.goal.Goal;
 
 import java.util.ArrayList;
@@ -121,7 +120,7 @@ public class GoalDatabaseHandler extends SQLiteOpenHelper {
         Category category = null;
         if(cursor.getCount() == 5) {
             DiaryDatabaseHandler categoryDatabaseHandler = new DiaryDatabaseHandler(context);
-            category = categoryDatabaseHandler.getCategory(Integer.parseInt(cursor.getString(4)));
+            category = categoryDatabaseHandler.readCategory(Integer.parseInt(cursor.getString(4)));
         }
 
         List tasks = new ArrayList();

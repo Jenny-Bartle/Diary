@@ -36,7 +36,7 @@ public class CreateTodoActivity extends ActionBarActivity {
             taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp);
         }
 
-        db.addTask(taskToAdd);
+        db.createTask(taskToAdd);
 
         // Go back to calling page
         finish();
