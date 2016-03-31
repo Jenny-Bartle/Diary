@@ -61,4 +61,8 @@ public class Task {
     public void addCategory(long category) {
         this.categories.add(category);
     }
+
+    public void addCategories(List<Long> categories) {
+        this.categories.addAll(categories);
+    }
 }

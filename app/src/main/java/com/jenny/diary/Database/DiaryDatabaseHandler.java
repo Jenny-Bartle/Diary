@@ -98,10 +98,13 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,
                         KEY_HEADING, KEY_DETAILS, KEY_TIMESTAMP, KEY_DUEDATE}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
+        db.close();
         if (cursor != null)
             cursor.moveToFirst();
 
-        return getTaskFromCursor(cursor);
+        Task task =  getTaskFromCursor(cursor);
+        task.addCategories(getAllCategoriesForTask(task.getId()));
+        return task;
     }
 
     public List<Task> readAllTasks() {
@@ -113,20 +116,23 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                taskList.add(getTaskFromCursor(cursor));
+                Task task =  getTaskFromCursor(cursor);
+                task.addCategories(getAllCategoriesForTask(task.getId()));
+                taskList.add(task);
             } while (cursor.moveToNext());
         }
 
+        db.close();
         return taskList;
     }
 
-    public int updateTask(Task task) {
+    public void updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues taskValues = initialiseTask(task);
-        // updating row
-        return db.update(TABLE_TASKS, taskValues, KEY_ID + " = ?",
+        db.update(TABLE_TASKS, taskValues, KEY_ID + " = ?",
                 new String[]{String.valueOf(task.getId())});
+        db.close();
     }
 
     public void deleteTask(Task task) {
@@ -188,13 +194,13 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
         return category;
     }
 
-    public int updateCategory(Category category) {
+    public void updateCategory(Category category) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues categoryValues = initialiseCategory(category);
-        // updating row
-        return db.update(TABLE_CATEGORIES, categoryValues, KEY_ID + " = ?",
+        db.update(TABLE_CATEGORIES, categoryValues, KEY_ID + " = ?",
                 new String[]{String.valueOf(category.getId())});
+        db.close();
     }
 
     public void deleteCategory(Category category) {
@@ -235,5 +241,47 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
         }
 
         return tasks;
+    }
+
+    private List<Long> getAllCategoriesForTask(long taskId) {
+        List<Long> tasks = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + "tt WHERE tt." + KEY_TASK_ID +" = " + taskId;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+            do {
+                tasks.add(c.getLong(c.getColumnIndex(KEY_CATEGORY_ID)));
+            } while (c.moveToNext());
+        }
+
+        db.close();
+        return tasks;
+    }
+
+    public void updateCategoryTask(long categoryId, long taskId) {
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + "tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId + "AND tt." + KEY_TASK_ID + " = " + taskId;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        long id = c.getLong(c.getColumnIndex(KEY_ID));
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_CATEGORY_ID, categoryId);
+        values.put(KEY_TASK_ID, taskId);
+
+        db.update(TABLE_CATEGORIES_TASKS, values, KEY_ID + " = ?",
+                new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+    public void deleteCategoryTask(long categoryId, long taskId){
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + "tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId + "AND tt." + KEY_TASK_ID + " = " + taskId;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        long id = c.getLong(c.getColumnIndex(KEY_ID));
+        db.delete(TABLE_CATEGORIES_TASKS, KEY_ID + " = ?",
+                new String[]{String.valueOf(id)});
+        db.close();
     }
 }
