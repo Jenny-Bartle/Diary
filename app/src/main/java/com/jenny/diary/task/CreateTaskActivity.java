@@ -1,4 +1,4 @@
-package com.jenny.diary.todo;
+package com.jenny.diary.task;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.jenny.diary.Database.DiaryDatabaseHandler;
+import com.jenny.diary.database.DiaryDatabaseHandler;
 import com.jenny.diary.DatePickerFragment;
 import com.jenny.diary.R;
 
 import java.sql.Timestamp;
 
-public class CreateTodoActivity extends ActionBarActivity {
+public class CreateTaskActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

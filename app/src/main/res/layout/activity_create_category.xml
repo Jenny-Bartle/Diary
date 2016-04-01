@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/category_create_add_todos"
-        android:id="@+id/category_create_item_title"
-        android:onClick="pickDate" />
+        android:id="@+id/category_associate"
+        android:onClick="associateTasksToCategory" />
 
     <TableRow
         android:layout_width="match_parent"

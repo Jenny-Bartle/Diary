@@ -43,13 +43,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/browse_todo"
                 android:id="@+id/browse_todo"
-                android:onClick="getTodos"/>
+                android:onClick="getTasks"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+"
                 android:id="@+id/add_todo"
-                android:onClick="createTodo"/>
+                android:onClick="createTask"/>
         </TableRow>
 
     </TableLayout>

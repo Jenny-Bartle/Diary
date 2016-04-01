@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.jenny.diary.todo.CreateTodoActivity;
+import com.jenny.diary.task.CreateTaskActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void createTodo(View view) {
-        Intent intent = new Intent(this, CreateTodoActivity.class);
+        Intent intent = new Intent(this, CreateTaskActivity.class);
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package com.jenny.diary.todo;
+package com.jenny.diary.task;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jenny.diary.Database.DiaryDatabaseHandler;
+import com.jenny.diary.database.DiaryDatabaseHandler;
 import com.jenny.diary.R;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Jenny on 01/08/2015.
  */
-public class BrowseTodoActivity extends ActionBarActivity {
+public class BrowseTaskActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,24 +29,24 @@ public class BrowseTodoActivity extends ActionBarActivity {
         setContentView(todosView);
 
         for (Task task : tasks) {
-            TodoBrowseElement row = (TodoBrowseElement)li.inflate(R.layout.todo_browse_list_row, null);
+            TaskBrowseElement row = (TaskBrowseElement)li.inflate(R.layout.task_browse_list_row, null);
             row.setTextValues(task);
             todosView.addView(row);
         }
     }
 
-    public void displayTodo(View view) {
-        TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
-        Intent intent = new Intent(this, DisplayTodoActivity.class);
+    public void displayTask(View view) {
+        TextView hiddenIdView = (TextView)findViewById(R.id.task_browse_list_row_id);
+        Intent intent = new Intent(this, DisplayTaskActivity.class);
         intent.putExtra("TASK", Long.parseLong(hiddenIdView.getText().toString()));
         startActivity(intent);
     }
 
     public void deleteTodo(View view){
-        TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
+        TextView hiddenIdView = (TextView)findViewById(R.id.task_browse_list_row_id);
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         Task task = db.readTask(Long.parseLong(hiddenIdView.getText().toString()));
-        TodoBrowseElement parentView = (TodoBrowseElement)view.getParent().getParent().getParent();
+        TaskBrowseElement parentView = (TaskBrowseElement)view.getParent().getParent().getParent();
         ((ViewGroup)parentView.getParent()).removeView(parentView);
         db.deleteTask(task);
     }

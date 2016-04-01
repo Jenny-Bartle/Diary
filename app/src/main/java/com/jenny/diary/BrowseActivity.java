@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.jenny.diary.todo.BrowseTodoActivity;
-import com.jenny.diary.todo.CreateTodoActivity;
+import com.jenny.diary.task.BrowseTaskActivity;
+import com.jenny.diary.task.CreateTaskActivity;
 
 /**
  * Created by Jenny on 29/07/2015.
@@ -20,12 +20,12 @@ public class BrowseActivity extends ActionBarActivity {
     }
 
     public void createTodo(View view) {
-        Intent intent = new Intent(this, CreateTodoActivity.class);
+        Intent intent = new Intent(this, CreateTaskActivity.class);
         startActivity(intent);
     }
 
-    public void getTodos(View view) {
-        Intent intent = new Intent(this, BrowseTodoActivity.class);
+    public void getTasks(View view) {
+        Intent intent = new Intent(this, BrowseTaskActivity.class);
         startActivity(intent);
     }
 

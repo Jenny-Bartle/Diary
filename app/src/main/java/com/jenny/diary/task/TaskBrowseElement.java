@@ -1,4 +1,4 @@
-package com.jenny.diary.todo;
+package com.jenny.diary.task;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -14,20 +14,20 @@ import java.util.Date;
 /**
  * Created by Jenny on 01/08/2015.
  */
-public class TodoBrowseElement extends TableRow {
+public class TaskBrowseElement extends TableRow {
 
-    public TodoBrowseElement(Context context, AttributeSet attributeSet) {
+    public TaskBrowseElement(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
-    public TodoBrowseElement(Context context) {
+    public TaskBrowseElement(Context context) {
         super(context);
     }
 
     public void setTextValues(Task task) {
-        TextView titleView = (TextView)findViewById(R.id.todo_browse_list_row_header);
-        TextView dateView = (TextView)findViewById(R.id.todo_browse_list_row_time);
-        TextView hiddenIdView = (TextView)findViewById(R.id.todo_browse_list_row_id);
+        TextView titleView = (TextView)findViewById(R.id.task_browse_list_row_header);
+        TextView dateView = (TextView)findViewById(R.id.task_browse_list_row_time);
+        TextView hiddenIdView = (TextView)findViewById(R.id.task_browse_list_row_id);
 
         titleView.setText(task.getHeading());
         Date date = new Date(task.getTimestamp().getTime());

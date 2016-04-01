@@ -1,4 +1,4 @@
-package com.jenny.diary.todo;
+package com.jenny.diary.task;
 
 import java.sql.Timestamp;
 import java.util.List;
