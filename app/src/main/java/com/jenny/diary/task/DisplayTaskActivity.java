@@ -1,4 +1,4 @@
-package com.jenny.diary.todo;
+package com.jenny.diary.task;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.jenny.diary.Database.DiaryDatabaseHandler;
+import com.jenny.diary.database.DiaryDatabaseHandler;
 import com.jenny.diary.DateFormatUtil;
 import com.jenny.diary.R;
 
@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Created by Jenny on 01/08/2015.
  */
-public class DisplayTodoActivity extends ActionBarActivity {
+public class DisplayTaskActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
