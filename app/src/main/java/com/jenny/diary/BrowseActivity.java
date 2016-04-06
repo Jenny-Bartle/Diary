@@ -19,7 +19,7 @@ public class BrowseActivity extends ActionBarActivity {
         setContentView(R.layout.activity_browse);
     }
 
-    public void createTodo(View view) {
+    public void createTask(View view) {
         Intent intent = new Intent(this, CreateTaskActivity.class);
         startActivity(intent);
     }

@@ -17,23 +17,23 @@ public class CreateTaskActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_todo);
+        setContentView(R.layout.activity_create_task);
     }
 
-    public void submitTodo(View view) {
+    public void submitTask(View view) {
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         long time = System.currentTimeMillis();
-        EditText todoHeader = (EditText)findViewById(R.id.create_todo_title);
-        EditText todoDetail = (EditText)findViewById(R.id.create_todo_body);
+        EditText taskHeader = (EditText)findViewById(R.id.create_task_title);
+        EditText taskDetail = (EditText)findViewById(R.id.create_task_body);
         Timestamp timestamp = new Timestamp(time);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
+        TextView hiddenDueDate = (TextView)findViewById(R.id.task_create_due_hidden);
 
         Task taskToAdd;
         if(hiddenDueDate.getText() != "") {
             Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(hiddenDueDate.getText().toString()));
-            taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp, hiddenTimeDue);
+            taskToAdd = new Task(time, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp, hiddenTimeDue);
         } else {
-            taskToAdd = new Task(time, todoHeader.getText().toString(), todoDetail.getText().toString(), timestamp);
+            taskToAdd = new Task(time, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp);
         }
 
         db.createTask(taskToAdd);
@@ -43,8 +43,8 @@ public class CreateTaskActivity extends ActionBarActivity {
     }
 
     public void pickDate(View v) {
-        TextView dueDate = (TextView)findViewById(R.id.todo_create_due);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.todo_create_due_hidden);
+        TextView dueDate = (TextView)findViewById(R.id.task_create_due);
+        TextView hiddenDueDate = (TextView)findViewById(R.id.task_create_due_hidden);
         DatePickerFragment datePicker = new DatePickerFragment();
         datePicker.setDateViews(hiddenDueDate, dueDate);
         datePicker.show(this.getFragmentManager(), "datePicker");

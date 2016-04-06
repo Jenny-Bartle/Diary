@@ -8,20 +8,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/todo_create_item_title"
+        android:text="@string/task_create_item_title"
         android:id="@+id/textView1"
         android:editable="false" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/create_todo_title" />
+        android:id="@+id/create_task_title" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/todo_create_item_body"
+        android:text="@string/task_create_item_body"
         android:id="@+id/textView2"
         android:editable="false" />
 
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/create_todo_body" />
+        android:id="@+id/create_task_body" />
 
     <TableRow
         android:layout_width="match_parent"
@@ -39,15 +39,15 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/todo_create_date_pick"
-            android:id="@+id/todo_create_date_pick"
+            android:text="@string/task_create_date_pick"
+            android:id="@+id/task_create_date_pick"
             android:onClick="pickDate" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:editable="false"
-            android:id="@+id/todo_create_due_hidden"
+            android:id="@+id/task_create_due_hidden"
             android:visibility="invisible" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:editable="false"
-            android:id="@+id/todo_create_due"
+            android:id="@+id/task_create_due"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10px" />
 
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:text="@string/submit"
         android:id="@+id/button"
-        android:onClick="submitTodo"
+        android:onClick="submitTask"
         android:layout_gravity="right" />
 
 </LinearLayout>

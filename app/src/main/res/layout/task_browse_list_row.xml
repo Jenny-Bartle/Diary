@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/delete"
                 android:id="@+id/task_browse_list_row_delete"
-                android:onClick="deleteTodo"/>
+                android:onClick="deleteTask"/>
 
             <TextView
                 android:layout_height="0dp"

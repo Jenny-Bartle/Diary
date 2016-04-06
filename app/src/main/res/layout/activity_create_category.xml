@@ -19,7 +19,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/category_create_add_todos"
+        android:text="@string/category_create_add_tasks"
         android:id="@+id/category_associate"
         android:onClick="associateTasksToCategory" />
 
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:editable="false"
-            android:id="@+id/todo_create_due"
+            android:id="@+id/task_create_due"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10px" />
 

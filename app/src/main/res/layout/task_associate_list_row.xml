@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jenny.diary.task.TaskBrowseElement xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jenny.diary.task.TaskAssociateElement xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
@@ -16,32 +16,24 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/checkBox"
+                android:id="@+id/task_associate_checkBox"
                 android:layout_column="0" />
 
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:id="@+id/task_browse_list_row_header"
+                android:id="@+id/task_associate_list_row_header"
                 android:layout_column="1" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-                android:id="@+id/task_browse_list_row_time"
-                android:gravity="right"
-                android:layout_column="2" />
 
             <TextView
                 android:layout_height="0dp"
                 android:layout_width="0dp"
-                android:id="@+id/task_browse_list_row_id"
+                android:id="@+id/task_associate_list_row_id"
                 android:visibility="invisible"
-                android:layout_column="3" />
+                android:layout_column="2" />
 
         </TableRow>
 
     </TableLayout>
 
-</com.jenny.diary.task.TaskBrowseElement>
+</com.jenny.diary.task.TaskAssociateElement>

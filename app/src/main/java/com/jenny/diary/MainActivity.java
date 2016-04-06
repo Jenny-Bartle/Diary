@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void createTodo(View view) {
+    public void createTask(View view) {
         Intent intent = new Intent(this, CreateTaskActivity.class);
         startActivity(intent);
     }

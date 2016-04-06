@@ -25,13 +25,13 @@ public class BrowseTaskActivity extends ActionBarActivity {
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         List<Task> tasks = db.readAllTasks();
         LayoutInflater li = LayoutInflater.from(this);
-        LinearLayout todosView = (LinearLayout)li.inflate(R.layout.activity_browse_todos, null);
-        setContentView(todosView);
+        LinearLayout tasksView = (LinearLayout)li.inflate(R.layout.activity_browse_tasks, null);
+        setContentView(tasksView);
 
         for (Task task : tasks) {
             TaskBrowseElement row = (TaskBrowseElement)li.inflate(R.layout.task_browse_list_row, null);
             row.setTextValues(task);
-            todosView.addView(row);
+            tasksView.addView(row);
         }
     }
 
@@ -42,7 +42,7 @@ public class BrowseTaskActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void deleteTodo(View view){
+    public void deleteTask(View view){
         TextView hiddenIdView = (TextView)findViewById(R.id.task_browse_list_row_id);
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         Task task = db.readTask(Long.parseLong(hiddenIdView.getText().toString()));

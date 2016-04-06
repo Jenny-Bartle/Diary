@@ -17,12 +17,12 @@ import java.util.GregorianCalendar;
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
-    private TextView hiddenTodoDateView;
-    private TextView visibleTodoDateView;
+    private TextView hiddenTaskDateView;
+    private TextView visibleTaskDateView;
 
-    public void setDateViews(TextView hiddenTodoDateView, TextView visibleTodoDateView) {
-        this.hiddenTodoDateView = hiddenTodoDateView;
-        this.visibleTodoDateView = visibleTodoDateView;
+    public void setDateViews(TextView hiddenTaskDateView, TextView visibleTaskDateView) {
+        this.hiddenTaskDateView = hiddenTaskDateView;
+        this.visibleTaskDateView = visibleTaskDateView;
     }
 
     @Override
@@ -40,9 +40,9 @@ public class DatePickerFragment extends DialogFragment
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         GregorianCalendar gc = new GregorianCalendar(year + 1900, month, day);
-        hiddenTodoDateView.setText(Long.toString(gc.getTimeInMillis()));
+        hiddenTaskDateView.setText(Long.toString(gc.getTimeInMillis()));
         SimpleDateFormat formatter = DateFormatUtil.getSimpleDateFormatter(gc.getTime());
-        visibleTodoDateView.setText(formatter.format(gc.getTime()).toString());
+        visibleTaskDateView.setText(formatter.format(gc.getTime()).toString());
     }
 
 }
