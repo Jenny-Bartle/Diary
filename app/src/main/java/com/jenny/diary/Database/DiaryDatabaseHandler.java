@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jenny.diary.category.Category;
-import com.jenny.diary.todo.Task;
+import com.jenny.diary.task.Task;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -81,7 +81,7 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = initialiseTask(task);
 
         // Inserting Row
-        //long todo_id =
+        //long task_id =
         db.insert(TABLE_TASKS, null, values);
         db.close();
         if(task.getCategories().isEmpty())
@@ -145,7 +145,7 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
     private ContentValues initialiseTask(Task task) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, task.getId());
-        // TODO should handle if these are null
+        // TASK should handle if these are null
         values.put(KEY_HEADING, task.getHeading());
         values.put(KEY_DETAILS, task.getDetails());
         values.put(KEY_TIMESTAMP, task.getTimestamp().toString());

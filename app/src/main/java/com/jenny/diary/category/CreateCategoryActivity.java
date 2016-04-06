@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.jenny.diary.R;
-import com.jenny.diary.database.DiaryDatabaseHandler;
+import com.jenny.diary.Database.DiaryDatabaseHandler;
 import com.jenny.diary.task.BrowseTaskActivity;
 
 import java.util.ArrayList;
