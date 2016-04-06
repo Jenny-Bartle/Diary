@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jenny.diary.Database.DiaryDatabaseHandler;
+import com.jenny.diary.database.DiaryDatabaseHandler;
 import com.jenny.diary.R;
 
 import java.util.List;

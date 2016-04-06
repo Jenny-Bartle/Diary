@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.jenny.diary.Database.DiaryDatabaseHandler;
+import com.jenny.diary.database.DiaryDatabaseHandler;
 import com.jenny.diary.DatePickerFragment;
 import com.jenny.diary.R;
 
