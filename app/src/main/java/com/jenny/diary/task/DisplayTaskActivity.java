@@ -31,33 +31,36 @@ public class DisplayTaskActivity extends ActionBarActivity {
         Task task = db.readTask(taskId);
         this.setTitle(task.getHeading());
 
-        EditText title = (EditText)findViewById(R.id.activity_display_task_title);
-        EditText timestamp = (EditText)findViewById(R.id.activity_display_task_timestamp);
-        EditText detail = (EditText)findViewById(R.id.activity_display_task_body);
-        TextView due = (TextView)findViewById(R.id.task_display_due);
+        EditText title = (EditText)findViewById(R.id.display_task_title);
+        EditText timestamp = (EditText)findViewById(R.id.display_task_timestamp);
+        EditText detail = (EditText)findViewById(R.id.display_task_body);
+        TextView due = (TextView)findViewById(R.id.display_task_due);
 
         Date date = new Date(task.getTimestamp().getTime());
         SimpleDateFormat dateFormat = DateFormatUtil.getSimpleDateFormatter(date);
         timestamp.setText(dateFormat.format(date));
         title.setText(task.getHeading());
         detail.setText(task.getDetails());
-        due.setText(dateFormat.format(task.getDueDate().getTime()));
+        if(task.getDueDate() != null) {
+            due.setText(dateFormat.format(task.getDueDate().getTime()));
+        }
     }
 
     public void updateTask(View view) {
         DiaryDatabaseHandler db = new DiaryDatabaseHandler(this);
         long time = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(time);
-        EditText taskHeader = (EditText)findViewById(R.id.activity_display_task_title);
-        EditText taskDetail = (EditText)findViewById(R.id.activity_display_task_body);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.task_display_due);
+        EditText taskHeader = (EditText)findViewById(R.id.display_task_title);
+        EditText taskDetail = (EditText)findViewById(R.id.display_task_body);
+        TextView taskDueDate = (TextView)findViewById(R.id.display_task_due);
+        Long taskId = Long.parseLong(((TextView) findViewById(R.id.display_task_due_hidden)).getText().toString());
 
         Task taskToAdd;
-        if(hiddenDueDate != null) {
-            Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(hiddenDueDate.getText().toString()));
-            taskToAdd = new Task(time, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp, hiddenTimeDue);
+        if(taskDueDate != null) {
+            Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(taskDueDate.getText().toString()));
+            taskToAdd = new Task(taskId, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp, hiddenTimeDue);
         } else {
-            taskToAdd = new Task(time, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp);
+            taskToAdd = new Task(taskId, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp);
         }
 
         db.updateTask(taskToAdd);

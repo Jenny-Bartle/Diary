@@ -101,12 +101,12 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,
                         KEY_HEADING, KEY_DETAILS, KEY_TIMESTAMP, KEY_DUEDATE}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
-        db.close();
         if (cursor != null)
             cursor.moveToFirst();
 
         Task task =  getTaskFromCursor(cursor);
         task.addCategories(getAllCategoriesForTask(task.getId()));
+        db.close();
         return task;
     }
 
@@ -140,7 +140,7 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
 
     public void deleteTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TASKS, KEY_ID + " = ?",
+        db.delete(TABLE_TASKS, KEY_ID + " = ? ",
                 new String[]{String.valueOf(task.getId())});
         db.close();
     }
@@ -283,7 +283,7 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void updateCategoryTask(long categoryId, long taskId) {
-        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + "tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId + "AND tt." + KEY_TASK_ID + " = " + taskId;
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + " tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId + "AND tt." + KEY_TASK_ID + " = " + taskId;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
         long id = c.getLong(c.getColumnIndex(KEY_ID));
@@ -298,7 +298,7 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void deleteCategoryTask(long categoryId, long taskId){
-        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + "tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId + "AND tt." + KEY_TASK_ID + " = " + taskId;
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + " tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId + "AND tt." + KEY_TASK_ID + " = " + taskId;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
         long id = c.getLong(c.getColumnIndex(KEY_ID));

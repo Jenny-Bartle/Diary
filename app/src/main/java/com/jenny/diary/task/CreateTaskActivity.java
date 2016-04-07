@@ -26,11 +26,11 @@ public class CreateTaskActivity extends ActionBarActivity {
         EditText taskHeader = (EditText)findViewById(R.id.create_task_title);
         EditText taskDetail = (EditText)findViewById(R.id.create_task_body);
         Timestamp timestamp = new Timestamp(time);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.task_create_due_hidden);
+        TextView dueDate = (TextView)findViewById(R.id.create_task_due_hidden);
 
         Task taskToAdd;
-        if(hiddenDueDate.getText() != "") {
-            Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(hiddenDueDate.getText().toString()));
+        if(dueDate.getText() != "") {
+            Timestamp hiddenTimeDue = new Timestamp(Long.parseLong(dueDate.getText().toString()));
             taskToAdd = new Task(time, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp, hiddenTimeDue);
         } else {
             taskToAdd = new Task(time, taskHeader.getText().toString(), taskDetail.getText().toString(), timestamp);
@@ -43,8 +43,8 @@ public class CreateTaskActivity extends ActionBarActivity {
     }
 
     public void pickDate(View v) {
-        TextView dueDate = (TextView)findViewById(R.id.task_create_due);
-        TextView hiddenDueDate = (TextView)findViewById(R.id.task_create_due_hidden);
+        TextView dueDate = (TextView)findViewById(R.id.create_task_due);
+        TextView hiddenDueDate = (TextView)findViewById(R.id.create_task_due_hidden);
         DatePickerFragment datePicker = new DatePickerFragment();
         datePicker.setDateViews(hiddenDueDate, dueDate);
         datePicker.show(this.getFragmentManager(), "datePicker");

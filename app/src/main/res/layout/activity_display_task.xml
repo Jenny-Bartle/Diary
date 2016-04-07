@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/activity_display_task_timestamp"
+        android:id="@+id/display_task_timestamp"
         android:layout_gravity="right"
         android:editable="false" />
 
@@ -16,14 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/activity_display_task_title"
+        android:id="@+id/display_task_title"
         android:editable="true"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/activity_display_task_body"
+        android:id="@+id/display_task_body"
         android:editable="true" />
 
     <TableRow
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:editable="false"
-            android:id="@+id/task_display_due_hidden"
+            android:id="@+id/display_task_due_hidden"
             android:visibility="invisible" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:editable="false"
-            android:id="@+id/task_display_due"
+            android:id="@+id/display_task_due"
             android:layout_gravity="center_vertical"/>
 
         <Button

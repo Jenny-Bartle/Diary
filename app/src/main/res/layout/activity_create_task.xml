@@ -40,14 +40,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/task_create_date_pick"
-            android:id="@+id/task_create_date_pick"
+            android:id="@+id/create_task_date_pick"
             android:onClick="pickDate" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:editable="false"
-            android:id="@+id/task_create_due_hidden"
+            android:id="@+id/create_task_due_hidden"
             android:visibility="invisible" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:editable="false"
-            android:id="@+id/task_create_due"
+            android:id="@+id/create_task_due"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10px" />
 
