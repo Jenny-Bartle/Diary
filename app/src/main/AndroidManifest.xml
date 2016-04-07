@@ -37,6 +37,14 @@
             android:label="@string/task_display_title">
         </activity>
         <activity
+            android:name=".category.BrowseCategoriesActivity"
+            android:label="@string/category_browse_title">
+        </activity>
+        <activity
+            android:name=".category.DisplayCategoryActivity">
+            android:label="@string/category_display_title">
+        </activity>
+        <activity
             android:name=".category.CreateCategoryActivity"
             android:label="@string/category_create_title">
         </activity>

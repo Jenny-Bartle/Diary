@@ -31,6 +31,12 @@
     <string name="task_display_title">Edit to-do</string>
     <string name="task_display_date_pick">Change due date</string>
 
+    <!-- To-do browse page -->
+    <string name="category_browse_title">Browse Categories</string>
+
+    <!-- To-do display page -->
+    <string name="category_display_title">Edit category</string>
+
     <!-- Category create page -->
     <string name="category_create_title">Create category</string>
     <string name="category_task_associate_title">Associate to-dos</string>

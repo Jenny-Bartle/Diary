@@ -197,6 +197,25 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
         return category;
     }
 
+    public List<Category> readAllCategories() {
+        List<Category> categoryList = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Category category = new Category(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
+                category.addTasks(getAllTasksForCategory(category.getId()));
+                categoryList.add(category);
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        return categoryList;
+    }
+
     public void updateCategory(Category category) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -232,7 +251,7 @@ public class DiaryDatabaseHandler extends SQLiteOpenHelper {
 
     private List<Long> getAllTasksForCategory(long categoryId) {
         List<Long> tasks = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + "tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId;
+        String selectQuery = "SELECT * FROM " + TABLE_CATEGORIES_TASKS + " tt WHERE tt." + KEY_CATEGORY_ID +" = " + categoryId;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
