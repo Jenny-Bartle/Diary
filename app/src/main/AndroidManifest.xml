@@ -40,6 +40,10 @@
             android:name=".category.CreateCategoryActivity"
             android:label="@string/category_create_title">
         </activity>
+        <activity
+            android:name=".category.AssociateTasksActivity"
+            android:label="@string/category_task_associate_title">
+        </activity>
     </application>
 
 </manifest>

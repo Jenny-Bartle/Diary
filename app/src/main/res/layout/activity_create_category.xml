@@ -8,7 +8,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/category_create_item_title"
-        android:id="@+id/textView1"
         android:editable="false" />
 
     <EditText

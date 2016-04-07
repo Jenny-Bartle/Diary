@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
+import com.jenny.diary.category.CreateCategoryActivity;
 import com.jenny.diary.task.BrowseTaskActivity;
 import com.jenny.diary.task.CreateTaskActivity;
 
@@ -28,5 +29,13 @@ public class BrowseActivity extends ActionBarActivity {
         Intent intent = new Intent(this, BrowseTaskActivity.class);
         startActivity(intent);
     }
+    public void createCategory(View view) {
+        Intent intent = new Intent(this, CreateCategoryActivity.class);
+        startActivity(intent);
+    }
 
+    public void getCategories(View view) {
+        //Intent intent = new Intent(this, BrowseCategoryActivity.class);
+        //startActivity(intent);
+    }
 }

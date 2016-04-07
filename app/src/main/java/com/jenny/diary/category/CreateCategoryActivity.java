@@ -8,7 +8,6 @@ import android.widget.EditText;
 
 import com.jenny.diary.R;
 import com.jenny.diary.database.DiaryDatabaseHandler;
-import com.jenny.diary.task.BrowseTaskActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +41,9 @@ public class CreateCategoryActivity extends ActionBarActivity {
     }
 
     public void associateTasksToCategory(View v){
-        Intent intent = new Intent(this, BrowseTaskActivity.class);
-        startActivityForResult(intent, ASSOCIATE_CATEGORY_REQUEST_ID);
+        Intent intent = new Intent(this, AssociateTasksActivity.class);
+        //startActivityForResult(intent, ASSOCIATE_CATEGORY_REQUEST_ID);
+        startActivity(intent);
     }
 
     @Override

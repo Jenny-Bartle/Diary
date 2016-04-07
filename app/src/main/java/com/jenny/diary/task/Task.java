@@ -1,6 +1,7 @@
 package com.jenny.diary.task;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class Task {
     private String details;
     private Timestamp timestamp;
     private Timestamp dueDate;
-    private List<Long> categories;
+    private List<Long> categories = new ArrayList<>();
 
     public Task(long id, String heading, String details, Timestamp timestamp){
         this.id = id;

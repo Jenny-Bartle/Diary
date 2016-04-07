@@ -33,6 +33,7 @@
 
     <!-- Category create page -->
     <string name="category_create_title">Create category</string>
+    <string name="category_task_associate_title">Associate to-dos</string>
     <string name="category_create_item_title">Heading</string>
     <string name="category_create_add_tasks">Associate to-dos with category</string>
 
