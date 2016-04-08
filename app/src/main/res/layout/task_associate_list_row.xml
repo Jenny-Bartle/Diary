@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jenny.diary.task.TaskAssociateElement xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jenny.diary.category.TaskAssociateElement xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
     <TableLayout
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:useDefaultMargins="true"
-        android:stretchColumns="0"
-        android:padding="5dp">
+        android:padding="8dp">
 
-        <TableRow>
+        <TableRow
+            android:baselineAligned="true">
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/task_associate_checkBox"
-                android:layout_column="0" />
+                android:id="@+id/task_associate_checkBox" />
 
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:id="@+id/task_associate_list_row_header"
-                android:layout_column="1" />
+                android:id="@+id/task_associate_list_row_header" />
 
             <TextView
-                android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:id="@+id/task_associate_list_row_id"
-                android:visibility="invisible"
-                android:layout_column="2" />
+                android:visibility="invisible" />
 
         </TableRow>
 
     </TableLayout>
 
-</com.jenny.diary.task.TaskAssociateElement>
+</com.jenny.diary.category.TaskAssociateElement>

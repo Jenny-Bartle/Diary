@@ -26,6 +26,6 @@ public class TaskAssociateElement extends TableRow {
         TextView hiddenIdView = (TextView)findViewById(R.id.task_associate_list_row_id);
 
         titleView.setText(task.getHeading());
-        hiddenIdView.setText(String.valueOf(task.getTimestamp().getTime()));
+        hiddenIdView.setText(String.valueOf(task.getId()));
     }
 }

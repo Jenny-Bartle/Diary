@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -34,11 +35,16 @@ public class AssociateTasksActivity extends ActionBarActivity {
         setContentView(tasksView);
 
         ScrollView scrollView = (ScrollView)findViewById(R.id.associate_tasks_scrollview);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
         for (Task task : tasks) {
             TaskAssociateElement row = (TaskAssociateElement)li.inflate(R.layout.task_associate_list_row, null);
             row.setTextValues(task);
-            scrollView.addView(row);
+            linearLayout.addView(row);
         }
+        scrollView.addView(linearLayout);
     }
 
     public void confirmAssociateTasks(View v){
