@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jenny.diary.R;
@@ -24,6 +23,7 @@ import java.util.List;
 public class AssociateTasksActivity extends ActionBarActivity {
 
     private List<Long> checkedIds = new ArrayList<>();
+    public int ASSOCIATE_CATEGORY_REQUEST_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +34,12 @@ public class AssociateTasksActivity extends ActionBarActivity {
         LinearLayout tasksView = (LinearLayout)li.inflate(R.layout.activity_associate_tasks, null);
         setContentView(tasksView);
 
-        ScrollView scrollView = (ScrollView)findViewById(R.id.associate_tasks_scrollview);
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-
+        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.associate_tasks_linearLayout);
         for (Task task : tasks) {
             TaskAssociateElement row = (TaskAssociateElement)li.inflate(R.layout.task_associate_list_row, null);
             row.setTextValues(task);
             linearLayout.addView(row);
         }
-        scrollView.addView(linearLayout);
     }
 
     public void confirmAssociateTasks(View v){
@@ -62,5 +57,10 @@ public class AssociateTasksActivity extends ActionBarActivity {
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_CANCELED, returnIntent);
         finish();
+    }
+
+    public void checkAssociateTask(View view) {
+        CheckBox box = (CheckBox)findViewById(R.id.task_associate_checkBox);
+        box.setChecked(!box.isChecked());
     }
 }

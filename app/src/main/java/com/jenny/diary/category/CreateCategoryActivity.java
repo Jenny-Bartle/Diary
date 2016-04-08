@@ -43,7 +43,7 @@ public class CreateCategoryActivity extends ActionBarActivity {
     public void associateTasksToCategory(View v){
         Intent intent = new Intent(this, AssociateTasksActivity.class);
         //startActivityForResult(intent, ASSOCIATE_CATEGORY_REQUEST_ID);
-        startActivity(intent);
+        startActivityForResult(intent, ASSOCIATE_CATEGORY_REQUEST_ID);
     }
 
     @Override

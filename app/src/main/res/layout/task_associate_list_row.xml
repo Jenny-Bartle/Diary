@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.jenny.diary.category.TaskAssociateElement xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onClick="checkAssociateTask"
+    android:padding="8dp">
 
-    <TableLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:useDefaultMargins="true"
-        android:padding="8dp">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_associate_checkBox" />
 
-        <TableRow
-            android:baselineAligned="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:id="@+id/task_associate_list_row_header" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/task_associate_checkBox" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:id="@+id/task_associate_list_row_header" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:id="@+id/task_associate_list_row_id"
-                android:visibility="invisible" />
-
-        </TableRow>
-
-    </TableLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_associate_list_row_id"
+            android:visibility="invisible" />
 
 </com.jenny.diary.category.TaskAssociateElement>
