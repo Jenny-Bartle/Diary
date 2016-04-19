@@ -60,6 +60,7 @@ public class AssociateTasksActivity extends ActionBarActivity {
     }
 
     public void checkAssociateTask(View view) {
+        view.getch
         CheckBox box = (CheckBox)findViewById(R.id.task_associate_checkBox);
         box.setChecked(!box.isChecked());
     }
